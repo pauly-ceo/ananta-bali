@@ -55,28 +55,6 @@
   .hero__bottom{align-self:end;display:flex;justify-content:space-between;align-items:flex-end;padding-top:60px;border-top:1px solid var(--paper-faint);font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-mute)}
   .hero__bottom strong{font-weight:500;color:var(--paper-soft);display:block;margin-bottom:6px}
 
-  /* PSCR · parallax-scrolling (osmosupply, 4 layers) */
-  .pscr{position:relative;width:100%;background:var(--ink)}
-  .pscr__header{position:relative;width:100%;height:140vh;background:var(--ink)}
-  .pscr__visuals{position:sticky;top:0;height:100vh;height:100svh;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}
-  .pscr__layers{position:relative;width:100%;height:100%}
-  .pscr__layer-img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:auto;max-width:none;height:auto;pointer-events:none;will-change:transform}
-  .pscr__layer-img--1{height:120%;width:auto;object-fit:cover;min-width:100%;z-index:1;opacity:.95}
-  .pscr__layer-img--2{height:90%;width:auto;z-index:2}
-  .pscr__layer-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;text-align:center;width:100%;padding:0 24px;will-change:transform}
-  .pscr__title{font-family:var(--f-display);font-weight:300;font-size:clamp(80px,16vw,260px);line-height:.92;letter-spacing:-.03em;color:var(--paper);margin:0;text-shadow:0 8px 40px rgba(0,0,0,.5)}
-  .pscr__title em{font-style:italic;opacity:.92}
-  .pscr__layer-img--4{height:60%;width:auto;z-index:4;bottom:0;top:auto;transform:translate(-50%,30%)}
-  .pscr__pre{position:absolute;top:140px;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);display:inline-flex;align-items:center;gap:14px;pointer-events:none}
-  .pscr__pre::before{content:"";width:38px;height:1px;background:var(--brass)}
-  .pscr__fade{position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(180deg,transparent,var(--ink));z-index:6;pointer-events:none}
-  .pscr__sub{position:absolute;bottom:80px;left:0;right:0;text-align:center;z-index:7;font-size:15px;font-weight:300;line-height:1.6;color:var(--paper-soft);max-width:560px;margin:0 auto;padding:0 24px}
-  @media(max-width:880px){
-    .pscr__header{height:120vh}
-    .pscr__title{font-size:64px}
-    .pscr__pre{top:96px;font-size:10px;letter-spacing:.28em}
-    .pscr__sub{bottom:48px;font-size:13px}
-  }
 
   /* GENERIC */
   section{position:relative}
@@ -268,24 +246,6 @@
   </div>
 </header>
 
-<!-- PSCR · parallax-scrolling (4 layers) -->
-<section class="pscr" id="pscr">
-  <div class="pscr__header" id="pscr-header">
-    <div class="pscr__visuals">
-      <div class="pscr__pre">Bali · MMXXVII · two addresses</div>
-      <div class="pscr__layers" id="pscr-layers">
-        <img class="pscr__layer-img pscr__layer-img--1" data-parallax-layer="1" src="bali-rice-poster.jpg" alt="" loading="eager">
-        <img class="pscr__layer-img pscr__layer-img--2" data-parallax-layer="2" src="bali-temple-poster.jpg" alt="" loading="eager">
-        <div class="pscr__layer-title" data-parallax-layer="3">
-          <h1 class="pscr__title">Two places<br><em>to call yours.</em></h1>
-        </div>
-        <img class="pscr__layer-img pscr__layer-img--4" data-parallax-layer="4" src="bali-sunset-poster.jpg" alt="" loading="eager">
-      </div>
-      <div class="pscr__sub">Eight private villas on the cliffs of Bukit. Thirty-six homes in Canggu. Same studio, same builder, same operator.</div>
-      <div class="pscr__fade"></div>
-    </div>
-  </div>
-</section>
 
 <!-- SPREAD · The premise -->
 <section class="spread">
@@ -474,35 +434,24 @@
     heroVid.play().catch(() => {});
   }
 
-  // ---- PARALLAX-SCROLLING (osmosupply) ----
+  // ---- DEST PARALLAX · 2 video cards slide-in on scroll ----
   (function(){
-    const header = document.getElementById('pscr-header');
-    const layers = document.querySelectorAll('[data-parallax-layer]');
-    if (!header || !layers.length) return;
+    const dest = document.querySelector('.dest');
+    const cards = document.querySelectorAll('.dest__list .dcard');
+    if (!dest || cards.length !== 2) return;
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    // GSAP layer yPercent targets at progress=1
-    const yPercentMap = {1: 70, 2: 55, 3: 40, 4: 10};
-
     const onScroll = () => {
-      const rect = header.getBoundingClientRect();
-      const ch = header.offsetHeight;
+      const rect = dest.getBoundingClientRect();
       const wh = window.innerHeight;
-      const scrolled = Math.max(0, -rect.top);
-      const maxScroll = Math.max(1, ch - wh);
-      const progress = Math.min(scrolled / maxScroll, 1);
-      layers.forEach(el => {
-        const layer = el.getAttribute('data-parallax-layer');
-        const yPercent = (yPercentMap[layer] || 0) * progress;
-        // preserve translate(-50%, -50%) base + add yPercent shift
-        if (layer === '4') {
-          el.style.transform = 'translate(-50%, calc(30% + ' + yPercent + '%))';
-        } else if (layer === '3') {
-          el.style.transform = 'translate(-50%, calc(-50% + ' + yPercent + '%))';
-        } else {
-          el.style.transform = 'translate(-50%, calc(-50% + ' + yPercent + '%))';
-        }
-      });
+      // 0 when dest top hits viewport bottom, 1 when dest bottom hits viewport top
+      const total = rect.height + wh;
+      const visible = wh - rect.top;
+      const progress = Math.max(0, Math.min(1, visible / total));
+      // Villas (left) — pomalejší vyjezd zespod
+      const tv = Math.max(0, (1 - progress * 1.6)) * 40;
+      const tc = Math.max(0, (1 - progress * 1.4)) * 60;
+      cards[0].style.transform = 'translateY(' + tv + 'vh)';
+      cards[1].style.transform = 'translateY(' + tc + 'vh)';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
