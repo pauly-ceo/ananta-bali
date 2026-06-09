@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ananta — Two ways to live in Bali</title>
+<meta name="description" content="Ananta develops two complementary residential projects in Bali. Eight private villas in Desa Kutuh, on the cliffs of Bukit. Thirty-six homes in Canggu, the cultural heart of the island. One design language. One operator. Two distinct addresses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream-1:#E8E6E3;--cream-2:#DFDDD9;--cream-3:#F1F0EF;
+    --ink:#1D2120;--ink-70:rgba(29,33,32,.7);--ink-50:rgba(29,33,32,.5);--ink-30:rgba(29,33,32,.3);
+    --rule:rgba(29,33,32,.18);--terra:#8B4F3A;
+    --f-display:"Cormorant Garamond","Georgia",serif;
+    --f-body:"Inter","Söhne",system-ui,-apple-system,sans-serif;
+    --t-base:.7s;--t-slow:1.1s;--ease:cubic-bezier(.16,1,.3,1);
+    --sp-section:160px;--sp-section-x:64px;--w-content:1080px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:var(--f-body);font-size:17px;font-weight:400;line-height:1.55;letter-spacing:-.01em;color:var(--ink);background:var(--cream-1);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  img,svg,video{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+  /* NAV */
+  .nav{position:fixed;inset:0 0 auto 0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 40px;transition:background var(--t-base) var(--ease), backdrop-filter var(--t-base);background:transparent}
+  .nav.scrolled{background:rgba(232,230,227,.85);backdrop-filter:saturate(140%) blur(14px);-webkit-backdrop-filter:saturate(140%) blur(14px)}
+  .nav__wordmark{font-family:var(--f-display);font-weight:400;font-size:24px;letter-spacing:.5em;text-transform:uppercase;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.35);transition:color var(--t-base), text-shadow var(--t-base);grid-column:2}
+  .nav.scrolled .nav__wordmark{color:#1D2120 !important;text-shadow:none}
+  .nav__cta{grid-column:3;justify-self:end;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;padding:11px 22px;border:1px solid rgba(255,255,255,.65);transition:all var(--t-base) var(--ease)}
+  .nav.scrolled .nav__cta{color:#1D2120 !important;border-color:rgba(29,33,32,.4) !important}
+  .nav__cta:hover{background:#fff;color:var(--ink);border-color:#fff}
+  .nav.scrolled .nav__cta:hover{background:var(--ink);color:var(--cream-3);border-color:var(--ink)}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;background:var(--ink)}
+  .hero__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity 1.6s var(--ease) .2s}
+  .hero__media.is-ready{opacity:1}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%, rgba(0,0,0,.12) 28%, rgba(0,0,0,.18) 60%, rgba(0,0,0,.62) 100%)}
+  .hero__inner{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:1fr auto;padding:0 64px 56px}
+  .hero__claim{align-self:center;justify-self:center;text-align:center;color:#fff;max-width:1100px}
+  .hero__eyebrow{font-size:12px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;opacity:.85;margin-bottom:38px}
+  .hero__h1{font-family:var(--f-display);font-size:clamp(56px,9.5vw,142px);font-weight:300;line-height:.96;letter-spacing:-.025em;margin:0}
+  .hero__h1 em{font-style:italic;font-weight:300;opacity:.92}
+  .hero__sub{margin-top:42px;font-size:15px;font-weight:400;line-height:1.55;letter-spacing:.02em;opacity:.88;max-width:560px;margin-left:auto;margin-right:auto}
+  .hero__bottom{align-self:end;display:flex;justify-content:space-between;align-items:flex-end;color:rgba(255,255,255,.88);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .hero__scroll{display:flex;align-items:center;gap:14px}
+  .hero__scroll-line{width:1px;height:42px;background:rgba(255,255,255,.6);animation:scrollPulse 2.6s var(--ease) infinite}
+  @keyframes scrollPulse{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+  .hero__meta{text-align:right;line-height:1.8}
+
+  section{position:relative}
+  .sec{padding:var(--sp-section) var(--sp-section-x)}
+  .sec--cream-2{background:var(--cream-2)}
+  .sec--cream-3{background:var(--cream-3)}
+  .sec--dark{background:var(--ink);color:var(--cream-3)}
+  .wrap{max-width:var(--w-content);margin:0 auto}
+  .wrap--wide{max-width:1320px;margin:0 auto}
+
+  .eb{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-50);display:inline-flex;align-items:center;gap:14px}
+  .eb::before{content:"";width:24px;height:1px;background:var(--ink-30)}
+  .sec--dark .eb{color:rgba(241,240,239,.55)}
+  .sec--dark .eb::before{background:rgba(241,240,239,.3)}
+
+  .lead{font-family:var(--f-display);font-weight:300;font-style:italic;font-size:clamp(22px,2.4vw,32px);line-height:1.45;letter-spacing:-.005em;color:var(--ink-70);max-width:780px;margin:32px 0 0}
+  .sec--dark .lead{color:rgba(241,240,239,.75)}
+
+  .link{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid currentColor;transition:opacity var(--t-base) var(--ease), gap var(--t-base) var(--ease)}
+  .link:hover{opacity:.6;gap:14px}
+  .link__arrow{display:inline-block;transition:transform var(--t-base) var(--ease)}
+  .link:hover .link__arrow{transform:translateX(4px)}
+
+  .fade{opacity:0;transform:translateY(28px);transition:opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease)}
+  .fade.in{opacity:1;transform:none}
+  .fade.d1{transition-delay:.12s}
+  .fade.d2{transition-delay:.24s}
+  .fade.d3{transition-delay:.36s}
+
+  /* MANIFESTO */
+  .manifesto .wrap{text-align:center}
+  .manifesto .lead{font-style:normal;font-size:clamp(26px,3.2vw,46px);line-height:1.32;color:var(--ink);max-width:980px;margin:32px auto 0}
+  .manifesto .eb{margin:0 auto;justify-content:center}
+
+  /* STORY — full-bleed video with copy overlay (Reschio-style) */
+  .story{position:relative;height:100vh;height:100svh;min-height:640px;overflow:hidden;background:var(--ink)}
+  .story__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .story::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4) 0%, rgba(0,0,0,.1) 30%, rgba(0,0,0,.2) 60%, rgba(0,0,0,.7) 100%)}
+  .story__inner{position:relative;z-index:2;height:100%;display:flex;align-items:flex-end;padding:0 64px 92px;color:#fff}
+  .story__col{max-width:680px}
+  .story__num{font-size:11px;font-weight:600;letter-spacing:.32em;opacity:.75;margin-bottom:18px}
+  .story__title{font-family:var(--f-display);font-weight:300;font-size:clamp(56px,7vw,108px);line-height:.98;letter-spacing:-.025em;margin:0}
+  .story__title em{font-style:italic;opacity:.92}
+  .story__body{margin-top:28px;font-size:17px;line-height:1.65;color:rgba(255,255,255,.88);max-width:560px}
+
+  /* PROJECTS — 2 cards */
+  .projects{padding:var(--sp-section) var(--sp-section-x);background:var(--cream-3)}
+  .projects__intro{text-align:center;max-width:920px;margin:0 auto 84px}
+  .projects__intro .eb{margin:0 auto 28px;justify-content:center}
+  .projects__intro h2{font-family:var(--f-display);font-weight:300;font-size:clamp(40px,5vw,76px);line-height:1.04;letter-spacing:-.02em;color:var(--ink);margin:0}
+  .projects__intro h2 em{font-style:italic}
+  .projects__intro p{margin-top:28px;font-size:17px;line-height:1.65;color:var(--ink-70);max-width:680px;margin-left:auto;margin-right:auto}
+
+  .pgrid{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .pcard{position:relative;display:block;background:var(--ink);overflow:hidden;color:#fff;aspect-ratio:4/5;transition:transform var(--t-base) var(--ease)}
+  .pcard:hover{transform:translateY(-4px)}
+  .pcard__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 1.4s var(--ease)}
+  .pcard:hover .pcard__media{transform:scale(1.04)}
+  .pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%, rgba(0,0,0,.1) 35%, rgba(0,0,0,.7) 100%);z-index:1}
+  .pcard__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:44px}
+  .pcard__top{display:flex;justify-content:space-between;align-items:flex-start}
+  .pcard__num{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;opacity:.85}
+  .pcard__status{font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;padding:6px 12px;border:1px solid rgba(255,255,255,.5);opacity:.95}
+  .pcard__bottom h3{font-family:var(--f-display);font-weight:300;font-size:clamp(42px,4.8vw,68px);line-height:1;letter-spacing:-.022em;margin:0 0 8px}
+  .pcard__bottom h3 em{font-style:italic;opacity:.9}
+  .pcard__loc{font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;opacity:.75;margin-bottom:18px}
+  .pcard__lead{font-size:16px;line-height:1.6;color:rgba(255,255,255,.92);max-width:380px;margin:0 0 28px}
+  .pcard__cta{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid #fff;transition:gap var(--t-base) var(--ease)}
+  .pcard:hover .pcard__cta{gap:14px}
+  @media(max-width:880px){
+    .pgrid{grid-template-columns:1fr;gap:20px}
+    .pcard{aspect-ratio:3/4}
+    .pcard__inner{padding:32px}
+  }
+
+  /* DNA — common philosophy / 3 columns */
+  .dna{padding:var(--sp-section) var(--sp-section-x);background:var(--cream-2)}
+  .dna .wrap{max-width:1240px;margin:0 auto}
+  .dna__head{text-align:center;max-width:920px;margin:0 auto 88px}
+  .dna__head .eb{margin:0 auto 28px;justify-content:center}
+  .dna__head h2{font-family:var(--f-display);font-weight:300;font-size:clamp(38px,4.6vw,72px);line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin:0}
+  .dna__head h2 em{font-style:italic}
+  .dna__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule)}
+  .dna__col{padding:56px 32px;border-right:1px solid var(--rule)}
+  .dna__col:last-child{border-right:0}
+  .dna__num{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-50);margin-bottom:22px}
+  .dna__title{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1.15;letter-spacing:-.015em;color:var(--ink);margin:0 0 16px}
+  .dna__body{font-size:15px;line-height:1.65;color:var(--ink-70);max-width:340px}
+  .dna__body a{border-bottom:1px solid var(--ink-30);padding-bottom:1px}
+  .dna__body a:hover{border-color:var(--ink)}
+  @media(max-width:880px){.dna__grid{grid-template-columns:1fr}.dna__col{border-right:0;border-bottom:1px solid var(--rule)}.dna__col:last-child{border-bottom:0}}
+
+  /* CODA — final cinematic */
+  .coda{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;background:var(--ink)}
+  .coda__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .coda::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%, rgba(0,0,0,.2) 40%, rgba(0,0,0,.55) 100%)}
+  .coda__inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 32px;color:#fff}
+  .coda h2{font-family:var(--f-display);font-weight:300;font-size:clamp(48px,7vw,108px);line-height:1.02;letter-spacing:-.025em;margin:0;max-width:1080px}
+  .coda h2 em{font-style:italic;opacity:.92}
+  .coda p{margin:36px auto 0;font-size:16px;line-height:1.65;color:rgba(255,255,255,.85);max-width:560px}
+
+  /* CONTACT */
+  .contact{padding:140px var(--sp-section-x);background:var(--cream-3)}
+  .contact__inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center}
+  .contact__photo{aspect-ratio:4/5;width:100%;background:var(--cream-2);object-fit:cover}
+  .contact__copy .eb{margin-bottom:28px}
+  .contact__copy h2{font-family:var(--f-display);font-weight:300;font-size:clamp(38px,4.6vw,72px);line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin:0}
+  .contact__copy h2 em{font-style:italic}
+  .contact__name{margin-top:28px;font-family:var(--f-display);font-size:24px;font-weight:400;color:var(--ink)}
+  .contact__role{margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-50)}
+  .contact__lines{margin-top:32px;display:grid;gap:14px;font-size:15px;color:var(--ink-70)}
+  .contact__lines a{border-bottom:1px solid var(--ink-30);padding-bottom:1px}
+  .contact__lines a:hover{border-color:var(--ink)}
+  @media(max-width:880px){.contact{padding:90px 22px}.contact__inner{grid-template-columns:1fr;gap:40px}}
+
+  /* FOOTER */
+  footer{padding:48px var(--sp-section-x);background:var(--ink);color:rgba(241,240,239,.55);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+  footer .wrap{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  footer a{border-bottom:1px solid rgba(241,240,239,.3);padding-bottom:1px;letter-spacing:.16em}
+  footer a:hover{border-color:rgba(241,240,239,.7);color:var(--cream-3)}
+
+  /* MOBILE OVERRIDES */
+  @media(max-width:780px){
+    :root{--sp-section:96px;--sp-section-x:22px}
+    .nav{padding:18px 22px}
+    .nav__wordmark{font-size:18px;letter-spacing:.42em}
+    .nav__cta{font-size:10.5px;padding:9px 16px}
+    .hero__inner{padding:0 22px 32px}
+    .hero__eyebrow{font-size:10.5px;letter-spacing:.28em;margin-bottom:22px}
+    .hero__sub{font-size:13.5px;margin-top:28px}
+    .hero__bottom{font-size:10px}
+    .story__inner{padding:0 22px 56px}
+    .story__title{font-size:48px}
+    .story__body{font-size:15px}
+    .projects__intro{margin-bottom:48px}
+    .coda h2{font-size:42px}
+    .coda p{font-size:14px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <span class="nav__wordmark">A&nbsp;N&nbsp;A&nbsp;N&nbsp;T&nbsp;A</span>
+  <a href="#contact" class="nav__cta">Speak with us</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <img class="hero__poster" src="bali-hero-poster.jpg" alt="">
+  <video class="hero__media" autoplay muted loop playsinline preload="metadata" poster="bali-hero-poster.jpg">
+    <source src="bali-hero-m.mp4" media="(max-width: 900px)" type="video/mp4">
+    <source src="bali-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero__inner">
+    <div class="hero__claim">
+      <div class="hero__eyebrow">Ananta · Bali · two addresses</div>
+      <h1 class="hero__h1">Two ways to live<br><em>in Bali.</em></h1>
+      <p class="hero__sub">Eight private villas on the cliffs of Bukit. Thirty-six homes in Canggu, the cultural heart of the island. One design language. One operator. Two distinct postcodes.</p>
+    </div>
+    <div class="hero__bottom">
+      <div class="hero__scroll"><span class="hero__scroll-line"></span><span>Scroll</span></div>
+      <div class="hero__meta">Desa Kutuh · Canggu<br>Handover 2027</div>
+    </div>
+  </div>
+</header>
+
+<!-- MANIFESTO -->
+<section class="sec sec--cream-1 manifesto">
+  <div class="wrap fade">
+    <div class="eb">The premise</div>
+    <p class="lead">Bali isn't one place. It's a coast, a forest, a hill, a beach — each with its own rhythm. We chose two of them, and built differently in each.</p>
+  </div>
+</section>
+
+<!-- STORY · WHY BALI -->
+<section class="story">
+  <video class="story__media" muted loop playsinline preload="metadata" autoplay poster="bali-story-poster.jpg">
+    <source src="bali-story-m.mp4" media="(max-width: 900px)" type="video/mp4">
+    <source src="bali-story.mp4" type="video/mp4">
+  </video>
+  <div class="story__inner">
+    <div class="story__col fade">
+      <div class="story__num">01 · Why Bali</div>
+      <h2 class="story__title">Bali absorbs <em>quiet</em> design.</h2>
+      <p class="story__body">For two decades the island has rewarded restraint. The properties that hold their value — and their soul — are the ones built with a long view: local craft, generous shade, water that moves slowly. That's the brief on both of our projects.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS · 2 CARDS -->
+<section class="projects" id="projects">
+  <div class="projects__intro fade">
+    <div class="eb">The portfolio</div>
+    <h2>Two postcodes. <em>One philosophy.</em></h2>
+    <p>Choose the one that fits how you want to be in Bali — both share the same studio, the same builder, and the same operator. Click a card to step into either project.</p>
+  </div>
+  <div class="pgrid">
+    <a class="pcard fade" href="https://pauly-ceo.github.io/ananta-villas-assets/" target="_blank" rel="noopener">
+      <video class="pcard__media" autoplay muted loop playsinline preload="metadata" poster="villas-card-poster.jpg">
+        <source src="villas-card-m.mp4" media="(max-width: 900px)" type="video/mp4">
+        <source src="villas-card.mp4" type="video/mp4">
+      </video>
+      <div class="pcard__inner">
+        <div class="pcard__top">
+          <span class="pcard__num">01 · Villas</span>
+          <span class="pcard__status">1 of 8 remaining</span>
+        </div>
+        <div class="pcard__bottom">
+          <h3>Ananta <em>Villas.</em></h3>
+          <div class="pcard__loc">Desa Kutuh · Nusa Dua</div>
+          <p class="pcard__lead">Eight private villas, one quiet corner of Bali. Designed for owners who want shade, water and silence in equal measure.</p>
+          <span class="pcard__cta">Explore Villas <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </a>
+    <a class="pcard fade d1" href="https://pauly-ceo.github.io/ananta-canggu-assets/" target="_blank" rel="noopener">
+      <video class="pcard__media" autoplay muted loop playsinline preload="metadata" poster="canggu-card-poster.jpg">
+        <source src="canggu-card-m.mp4" media="(max-width: 900px)" type="video/mp4">
+        <source src="canggu-card.mp4" type="video/mp4">
+      </video>
+      <div class="pcard__inner">
+        <div class="pcard__top">
+          <span class="pcard__num">02 · Apartments</span>
+          <span class="pcard__status">Pre-sale</span>
+        </div>
+        <div class="pcard__bottom">
+          <h3>Ananta <em>Canggu.</em></h3>
+          <div class="pcard__loc">Canggu · Berawa</div>
+          <p class="pcard__lead">Thirty-six homes in the cultural heart of Bali. For people who want surf, coffee, studio dinners and design — all within a five-minute walk.</p>
+          <span class="pcard__cta">Explore Apartments <span aria-hidden="true">→</span></span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- DNA · COMMON PHILOSOPHY -->
+<section class="dna">
+  <div class="wrap">
+    <div class="dna__head fade">
+      <div class="eb">What both projects share</div>
+      <h2>Same studio. Same operator. <em>Same builder.</em></h2>
+    </div>
+    <div class="dna__grid">
+      <div class="dna__col fade">
+        <div class="dna__num">01 · Design</div>
+        <h3 class="dna__title">Studio Identity Designers — Jakarta.</h3>
+        <p class="dna__body">One design language across both projects: restrained materials, generous shade, indoor-outdoor flow, and a refusal of the postcard-Bali cliché. The villas read like a private estate; the apartments read like a tropical city home.</p>
+      </div>
+      <div class="dna__col fade d1">
+        <div class="dna__num">02 · Operator</div>
+        <h3 class="dna__title">MyResorts — hotel-grade hospitality.</h3>
+        <p class="dna__body">A single operator runs both properties: pre-arrival concierge, daily housekeeping, private chef on request, rental program for owners who want yield. You buy a home; you don't acquire an operations problem.</p>
+      </div>
+      <div class="dna__col fade d2">
+        <div class="dna__num">03 · Builder</div>
+        <h3 class="dna__title">Built by <a href="https://www.thierra.com" target="_blank" rel="noopener">Thierra Construction</a>.</h3>
+        <p class="dna__body">Both projects are built by Thierra, our group's construction arm — 1.3 bn CZK annual turnover, twenty years of premium residential. Same standards, same team, same accountability across Desa Kutuh and Canggu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODA -->
+<section class="coda">
+  <video class="coda__media" muted loop playsinline preload="metadata" autoplay poster="bali-coda-poster.jpg">
+    <source src="bali-coda-m.mp4" media="(max-width: 900px)" type="video/mp4">
+    <source src="bali-coda.mp4" type="video/mp4">
+  </video>
+  <div class="coda__inner fade">
+    <h2>Quietly designed.<br><em>Tightly run.</em></h2>
+    <p>Two addresses in Bali, owned by the people who live there — and operated for those who fly in twice a year. Pick the one that fits.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <img class="contact__photo fade" src="https://pauly-ceo.github.io/ananta-villas-assets/kristyna.jpg" alt="Dr. Kristýna Pauly" loading="eager" decoding="async">
+    <div class="contact__copy fade d1">
+      <div class="eb">Speak with us</div>
+      <h2>Talk to the person who built both <em>projects.</em></h2>
+      <div class="contact__name">Dr. Kristýna Pauly</div>
+      <div class="contact__role">CEO · The Personal Resorts Bali</div>
+      <div class="contact__lines">
+        <div>Email · <a href="mailto:kristyna.pauly@myresorts.eu">kristyna.pauly@myresorts.eu</a></div>
+        <div>Phone · <a href="tel:+420739685681">+420 739 685 681</a></div>
+        <div>WhatsApp · <a href="https://wa.me/420739685681" target="_blank" rel="noopener">+420 739 685 681</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Ananta · MyResorts · Bali</div>
+    <div><a href="https://pauly-ceo.github.io/ananta-villas-assets/" target="_blank" rel="noopener">Villas</a> &nbsp;·&nbsp; <a href="https://pauly-ceo.github.io/ananta-canggu-assets/" target="_blank" rel="noopener">Apartments</a></div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll-state
+  const nav = document.getElementById('nav');
+  const onScroll = () => { if (window.scrollY > 60) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Fade-in on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // Hero video reveal
+  const heroVid = document.querySelector('.hero__media');
+  if (heroVid) {
+    const reveal = () => heroVid.classList.add('is-ready');
+    heroVid.addEventListener('canplay', reveal, { once: true });
+    heroVid.addEventListener('loadeddata', reveal, { once: true });
+    setTimeout(reveal, 2400); // fallback
+    heroVid.play().catch(() => {});
+  }
+
+  // Force-play all videos for iOS Safari
+  document.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
+</script>
+
+</body>
+</html>
