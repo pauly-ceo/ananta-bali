@@ -111,6 +111,45 @@
     .strip__div{width:80px;height:1px;background:var(--paper-faint);justify-self:center}
   }
 
+  /* LAMP · cinematic announcement before destinations */
+  .lamp{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:#020617;min-height:100vh;min-height:100svh;width:100%;z-index:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .lamp__stage{position:relative;display:flex;width:100%;flex:1;transform:scaleY(1.25);align-items:center;justify-content:center;isolation:isolate;z-index:0}
+  .lamp__cone-l{position:absolute;right:50%;top:0;height:14rem;width:15rem;background-image:conic-gradient(from 70deg at center top,#06b6d4,transparent 35%,transparent);color:#fff;opacity:.5;overflow:visible;transition:width 1s cubic-bezier(.16,1,.3,1) .3s, opacity 1s cubic-bezier(.16,1,.3,1) .3s}
+  .lamp.in .lamp__cone-l{width:30rem;opacity:1}
+  .lamp__cone-l::before{content:"";position:absolute;left:0;bottom:0;width:100%;height:10rem;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to top,#fff,transparent);mask-image:linear-gradient(to top,#fff,transparent)}
+  .lamp__cone-l::after{content:"";position:absolute;left:0;bottom:0;width:10rem;height:100%;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to right,#fff,transparent);mask-image:linear-gradient(to right,#fff,transparent)}
+  .lamp__cone-r{position:absolute;left:50%;top:0;height:14rem;width:15rem;background-image:conic-gradient(from 290deg at center top,transparent,transparent 65%,#06b6d4);color:#fff;opacity:.5;transition:width 1s cubic-bezier(.16,1,.3,1) .3s, opacity 1s cubic-bezier(.16,1,.3,1) .3s}
+  .lamp.in .lamp__cone-r{width:30rem;opacity:1}
+  .lamp__cone-r::before{content:"";position:absolute;right:0;bottom:0;width:10rem;height:100%;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to left,#fff,transparent);mask-image:linear-gradient(to left,#fff,transparent)}
+  .lamp__cone-r::after{content:"";position:absolute;right:0;bottom:0;width:100%;height:10rem;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to top,#fff,transparent);mask-image:linear-gradient(to top,#fff,transparent)}
+  .lamp__blur-base{position:absolute;top:50%;height:12rem;width:100%;transform:translateY(3rem) scaleX(1.5);background:#020617;filter:blur(40px)}
+  .lamp__blur-glass{position:absolute;top:50%;z-index:50;height:12rem;width:100%;background:transparent;opacity:.1;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .lamp__glow{position:absolute;z-index:50;height:9rem;width:28rem;transform:translateY(-50%);border-radius:9999px;background:#06b6d4;opacity:.5;filter:blur(64px)}
+  .lamp__core{position:absolute;z-index:30;height:9rem;width:8rem;transform:translateY(-6rem);border-radius:9999px;background:#22d3ee;filter:blur(40px);transition:width 1s cubic-bezier(.16,1,.3,1) .3s}
+  .lamp.in .lamp__core{width:16rem}
+  .lamp__line{position:absolute;z-index:50;height:2px;width:15rem;transform:translateY(-7rem);background:#22d3ee;box-shadow:0 0 14px #22d3ee;transition:width 1s cubic-bezier(.16,1,.3,1) .3s}
+  .lamp.in .lamp__line{width:30rem}
+  .lamp__top-mask{position:absolute;z-index:40;height:11rem;width:100%;transform:translateY(-12.5rem);background:#020617}
+  .lamp__content{position:relative;z-index:50;transform:translateY(-20rem);display:flex;flex-direction:column;align-items:center;padding:0 24px;width:100%}
+  .lamp__eb{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(34,211,238,.85);display:inline-flex;align-items:center;gap:14px;margin-bottom:36px;opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease) .5s, transform 1s var(--ease) .5s}
+  .lamp__eb::before{content:"";width:38px;height:1px;background:#22d3ee}
+  .lamp.in .lamp__eb{opacity:1;transform:none}
+  .lamp__h{font-family:var(--f-display);font-weight:300;font-size:clamp(56px,7.5vw,128px);line-height:1;letter-spacing:-.025em;text-align:center;background:linear-gradient(to bottom right,#e2e8f0,#64748b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;opacity:0;transform:translateY(80px);transition:opacity 1.1s var(--ease) .55s, transform 1.1s var(--ease) .55s;margin:0}
+  .lamp.in .lamp__h{opacity:1;transform:none}
+  .lamp__sub{margin-top:36px;font-size:15px;line-height:1.7;color:rgba(226,232,240,.65);max-width:520px;text-align:center;font-weight:300;opacity:0;transform:translateY(40px);transition:opacity 1.2s var(--ease) .7s, transform 1.2s var(--ease) .7s}
+  .lamp.in .lamp__sub{opacity:1;transform:none}
+  @media(max-width:880px){
+    .lamp__cone-l,.lamp__cone-r{height:11rem;width:11rem}
+    .lamp.in .lamp__cone-l,.lamp.in .lamp__cone-r{width:22rem}
+    .lamp__core{width:6rem}
+    .lamp.in .lamp__core{width:12rem}
+    .lamp__line{width:11rem}
+    .lamp.in .lamp__line{width:22rem}
+    .lamp__content{transform:translateY(-16rem)}
+    .lamp__h{font-size:46px}
+    .lamp__sub{font-size:14px}
+  }
+
   /* DESTINATIONS · 2 horizontal cards */
   .dest{padding:var(--sp) 0 0;background:var(--ink)}
   .dest__intro{max-width:1280px;margin:0 auto 120px;padding:0 var(--pad-x);display:grid;grid-template-columns:1fr 1.4fr;gap:120px;align-items:end}
@@ -304,6 +343,25 @@
   </div>
 </section>
 
+<!-- LAMP · announcement -->
+<section class="lamp" id="lamp">
+  <div class="lamp__stage">
+    <div class="lamp__cone-l"></div>
+    <div class="lamp__cone-r"></div>
+    <div class="lamp__blur-base"></div>
+    <div class="lamp__blur-glass"></div>
+    <div class="lamp__glow"></div>
+    <div class="lamp__core"></div>
+    <div class="lamp__line"></div>
+    <div class="lamp__top-mask"></div>
+  </div>
+  <div class="lamp__content">
+    <div class="lamp__eb">Now choose</div>
+    <h2 class="lamp__h">Pick your<br>Bali.</h2>
+    <p class="lamp__sub">Two destinations, one operator. The villas in the south. The apartments in the cultural heart. Click a card to step into either project.</p>
+  </div>
+</section>
+
 <!-- DESTINATIONS -->
 <section class="dest" id="projects">
   <div class="dest__intro">
@@ -428,6 +486,12 @@
 
   // Force-play videos for iOS Safari
   document.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
+
+  // Lamp trigger
+  const lampIo = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.lamp').forEach(el => lampIo.observe(el));
 
   // ---- SCROLL-EXPANSION HERO ----
   (function(){
