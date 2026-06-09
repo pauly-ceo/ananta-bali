@@ -41,24 +41,27 @@
   .topbar__cta{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--paper);padding-bottom:6px;border-bottom:1px solid var(--brass);transition:opacity var(--t)}
   .topbar__cta:hover{opacity:.75}
 
-  /* HERO · scroll-expansion */
-  .xhero{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
-  .xhero__bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:1;will-change:opacity}
-  .xhero__bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18)}
-  .xhero__box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:400px;max-width:95vw;max-height:85vh;border-radius:18px;overflow:hidden;z-index:3;box-shadow:0 0 60px rgba(0,0,0,.45);will-change:width,height}
-  .xhero__video{width:100%;height:100%;object-fit:cover;display:block}
-  .xhero__box-dim{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:1;pointer-events:none;will-change:opacity}
-  .xhero__caption{position:absolute;left:0;right:0;bottom:24px;z-index:2;text-align:center;color:var(--paper);pointer-events:none;will-change:opacity}
-  .xhero__date{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-soft);margin:0 0 8px}
-  .xhero__prompt{font-family:var(--f-mono);font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);margin:0}
-  .xhero__title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:16px;mix-blend-mode:difference;pointer-events:none;width:100%;padding:0 24px;text-align:center}
-  .xhero__word{font-family:var(--f-display);font-weight:300;font-size:clamp(48px,8.5vw,138px);line-height:1;letter-spacing:-.025em;color:var(--paper);margin:0;will-change:transform}
-  .xhero__intro{position:absolute;top:160px;left:50%;transform:translateX(-50%);z-index:4;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);display:inline-flex;align-items:center;gap:14px;pointer-events:none;will-change:opacity}
-  .xhero__intro::before{content:"";width:38px;height:1px;background:var(--brass)}
+  /* HERO · parallax-scrolling (osmosupply, 4 layers) */
+  .pscr{position:relative;width:100%;background:var(--ink)}
+  .pscr__header{position:relative;width:100%;height:140vh;background:var(--ink)}
+  .pscr__visuals{position:sticky;top:0;height:100vh;height:100svh;width:100%;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .pscr__layers{position:relative;width:100%;height:100%}
+  .pscr__layer-img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:auto;max-width:none;height:auto;pointer-events:none;will-change:transform}
+  .pscr__layer-img--1{height:120%;width:auto;object-fit:cover;min-width:100%;z-index:1;opacity:.95}
+  .pscr__layer-img--2{height:90%;width:auto;z-index:2}
+  .pscr__layer-title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;text-align:center;width:100%;padding:0 24px;will-change:transform}
+  .pscr__title{font-family:var(--f-display);font-weight:300;font-size:clamp(80px,16vw,260px);line-height:.92;letter-spacing:-.03em;color:var(--paper);margin:0;text-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .pscr__title em{font-style:italic;opacity:.92}
+  .pscr__layer-img--4{height:60%;width:auto;z-index:4;bottom:0;top:auto;transform:translate(-50%,30%)}
+  .pscr__pre{position:absolute;top:140px;left:50%;transform:translateX(-50%);z-index:5;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);display:inline-flex;align-items:center;gap:14px;pointer-events:none}
+  .pscr__pre::before{content:"";width:38px;height:1px;background:var(--brass)}
+  .pscr__fade{position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(180deg,transparent,var(--ink));z-index:6;pointer-events:none}
+  .pscr__sub{position:absolute;bottom:80px;left:0;right:0;text-align:center;z-index:7;font-size:15px;font-weight:300;line-height:1.6;color:var(--paper-soft);max-width:560px;margin:0 auto;padding:0 24px}
   @media(max-width:880px){
-    .xhero__box{width:240px;height:340px;border-radius:14px}
-    .xhero__word{font-size:42px}
-    .xhero__intro{top:110px;font-size:10px;letter-spacing:.28em}
+    .pscr__header{height:120vh}
+    .pscr__title{font-size:64px}
+    .pscr__pre{top:96px;font-size:10px;letter-spacing:.28em}
+    .pscr__sub{bottom:48px;font-size:13px}
   }
 
   /* GENERIC */
@@ -111,44 +114,6 @@
     .strip__div{width:80px;height:1px;background:var(--paper-faint);justify-self:center}
   }
 
-  /* LAMP · cinematic announcement before destinations */
-  .lamp{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:#020617;min-height:100vh;min-height:100svh;width:100%;z-index:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-  .lamp__stage{position:relative;display:flex;width:100%;flex:1;transform:scaleY(1.25);align-items:center;justify-content:center;isolation:isolate;z-index:0}
-  .lamp__cone-l{position:absolute;right:50%;top:0;height:14rem;width:15rem;background-image:conic-gradient(from 70deg at center top,#06b6d4,transparent 35%,transparent);color:#fff;opacity:.5;overflow:visible;transition:width 1s cubic-bezier(.16,1,.3,1) .3s, opacity 1s cubic-bezier(.16,1,.3,1) .3s}
-  .lamp.in .lamp__cone-l{width:30rem;opacity:1}
-  .lamp__cone-l::before{content:"";position:absolute;left:0;bottom:0;width:100%;height:10rem;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to top,#fff,transparent);mask-image:linear-gradient(to top,#fff,transparent)}
-  .lamp__cone-l::after{content:"";position:absolute;left:0;bottom:0;width:10rem;height:100%;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to right,#fff,transparent);mask-image:linear-gradient(to right,#fff,transparent)}
-  .lamp__cone-r{position:absolute;left:50%;top:0;height:14rem;width:15rem;background-image:conic-gradient(from 290deg at center top,transparent,transparent 65%,#06b6d4);color:#fff;opacity:.5;transition:width 1s cubic-bezier(.16,1,.3,1) .3s, opacity 1s cubic-bezier(.16,1,.3,1) .3s}
-  .lamp.in .lamp__cone-r{width:30rem;opacity:1}
-  .lamp__cone-r::before{content:"";position:absolute;right:0;bottom:0;width:10rem;height:100%;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to left,#fff,transparent);mask-image:linear-gradient(to left,#fff,transparent)}
-  .lamp__cone-r::after{content:"";position:absolute;right:0;bottom:0;width:100%;height:10rem;background:#020617;z-index:20;-webkit-mask-image:linear-gradient(to top,#fff,transparent);mask-image:linear-gradient(to top,#fff,transparent)}
-  .lamp__blur-base{position:absolute;top:50%;height:12rem;width:100%;transform:translateY(3rem) scaleX(1.5);background:#020617;filter:blur(40px)}
-  .lamp__blur-glass{position:absolute;top:50%;z-index:50;height:12rem;width:100%;background:transparent;opacity:.1;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-  .lamp__glow{position:absolute;z-index:50;height:9rem;width:28rem;transform:translateY(-50%);border-radius:9999px;background:#06b6d4;opacity:.5;filter:blur(64px)}
-  .lamp__core{position:absolute;z-index:30;height:9rem;width:8rem;transform:translateY(-6rem);border-radius:9999px;background:#22d3ee;filter:blur(40px);transition:width 1s cubic-bezier(.16,1,.3,1) .3s}
-  .lamp.in .lamp__core{width:16rem}
-  .lamp__line{position:absolute;z-index:50;height:2px;width:15rem;transform:translateY(-7rem);background:#22d3ee;box-shadow:0 0 14px #22d3ee;transition:width 1s cubic-bezier(.16,1,.3,1) .3s}
-  .lamp.in .lamp__line{width:30rem}
-  .lamp__top-mask{position:absolute;z-index:40;height:11rem;width:100%;transform:translateY(-12.5rem);background:#020617}
-  .lamp__content{position:relative;z-index:50;transform:translateY(-20rem);display:flex;flex-direction:column;align-items:center;padding:0 24px;width:100%}
-  .lamp__eb{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:rgba(34,211,238,.85);display:inline-flex;align-items:center;gap:14px;margin-bottom:36px;opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease) .5s, transform 1s var(--ease) .5s}
-  .lamp__eb::before{content:"";width:38px;height:1px;background:#22d3ee}
-  .lamp.in .lamp__eb{opacity:1;transform:none}
-  .lamp__h{font-family:var(--f-display);font-weight:300;font-size:clamp(56px,7.5vw,128px);line-height:1;letter-spacing:-.025em;text-align:center;background:linear-gradient(to bottom right,#e2e8f0,#64748b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;opacity:0;transform:translateY(80px);transition:opacity 1.1s var(--ease) .55s, transform 1.1s var(--ease) .55s;margin:0}
-  .lamp.in .lamp__h{opacity:1;transform:none}
-  .lamp__sub{margin-top:36px;font-size:15px;line-height:1.7;color:rgba(226,232,240,.65);max-width:520px;text-align:center;font-weight:300;opacity:0;transform:translateY(40px);transition:opacity 1.2s var(--ease) .7s, transform 1.2s var(--ease) .7s}
-  .lamp.in .lamp__sub{opacity:1;transform:none}
-  @media(max-width:880px){
-    .lamp__cone-l,.lamp__cone-r{height:11rem;width:11rem}
-    .lamp.in .lamp__cone-l,.lamp.in .lamp__cone-r{width:22rem}
-    .lamp__core{width:6rem}
-    .lamp.in .lamp__core{width:12rem}
-    .lamp__line{width:11rem}
-    .lamp.in .lamp__line{width:22rem}
-    .lamp__content{transform:translateY(-16rem)}
-    .lamp__h{font-size:46px}
-    .lamp__sub{font-size:14px}
-  }
 
   /* DESTINATIONS · 2 horizontal cards */
   .dest{padding:var(--sp) 0 0;background:var(--ink)}
@@ -270,24 +235,22 @@
   </div>
 </nav>
 
-<!-- HERO · scroll-expansion -->
-<section class="xhero" id="xhero">
-  <div class="xhero__bg" id="xhero-bg" style="background-image:url('bali-rice-poster.jpg')"></div>
-  <div class="xhero__intro" id="xhero-intro">Bali · MMXXVII · two addresses</div>
-  <div class="xhero__box" id="xhero-box">
-    <video class="xhero__video" id="xhero-video" autoplay muted loop playsinline preload="auto" poster="bali-sunset-poster.jpg">
-      <source src="bali-sunset-m.mp4" media="(max-width: 900px)" type="video/mp4">
-      <source src="bali-sunset.mp4" type="video/mp4">
-    </video>
-    <div class="xhero__box-dim" id="xhero-dim"></div>
-    <div class="xhero__caption" id="xhero-caption">
-      <p class="xhero__date">Ananta · Bali</p>
-      <p class="xhero__prompt">Scroll to expand</p>
+<!-- HERO · parallax-scrolling (osmosupply, 4 layers) -->
+<section class="pscr" id="pscr">
+  <div class="pscr__header" id="pscr-header">
+    <div class="pscr__visuals">
+      <div class="pscr__pre">Bali · MMXXVII · two addresses</div>
+      <div class="pscr__layers" id="pscr-layers">
+        <img class="pscr__layer-img pscr__layer-img--1" data-parallax-layer="1" src="bali-rice-poster.jpg" alt="" loading="eager">
+        <img class="pscr__layer-img pscr__layer-img--2" data-parallax-layer="2" src="bali-temple-poster.jpg" alt="" loading="eager">
+        <div class="pscr__layer-title" data-parallax-layer="3">
+          <h1 class="pscr__title">Two places<br><em>to call yours.</em></h1>
+        </div>
+        <img class="pscr__layer-img pscr__layer-img--4" data-parallax-layer="4" src="bali-sunset-poster.jpg" alt="" loading="eager">
+      </div>
+      <div class="pscr__sub">Eight private villas on the cliffs of Bukit. Thirty-six homes in Canggu. Same studio, same builder, same operator.</div>
+      <div class="pscr__fade"></div>
     </div>
-  </div>
-  <div class="xhero__title">
-    <h1 class="xhero__word" id="xhero-w1">Two places</h1>
-    <h1 class="xhero__word" id="xhero-w2">to call yours</h1>
   </div>
 </section>
 
@@ -340,25 +303,6 @@
       <div class="strip__num"><em>I</em></div>
       <div class="strip__lbl">Operator · MyResorts</div>
     </div>
-  </div>
-</section>
-
-<!-- LAMP · announcement -->
-<section class="lamp" id="lamp">
-  <div class="lamp__stage">
-    <div class="lamp__cone-l"></div>
-    <div class="lamp__cone-r"></div>
-    <div class="lamp__blur-base"></div>
-    <div class="lamp__blur-glass"></div>
-    <div class="lamp__glow"></div>
-    <div class="lamp__core"></div>
-    <div class="lamp__line"></div>
-    <div class="lamp__top-mask"></div>
-  </div>
-  <div class="lamp__content">
-    <div class="lamp__eb">Now choose</div>
-    <h2 class="lamp__h">Pick your<br>Bali.</h2>
-    <p class="lamp__sub">Two destinations, one operator. The villas in the south. The apartments in the cultural heart. Click a card to step into either project.</p>
   </div>
 </section>
 
@@ -487,83 +431,38 @@
   // Force-play videos for iOS Safari
   document.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
 
-  // Lamp trigger
-  const lampIo = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.25 });
-  document.querySelectorAll('.lamp').forEach(el => lampIo.observe(el));
-
-  // ---- SCROLL-EXPANSION HERO ----
+  // ---- PARALLAX-SCROLLING (osmosupply) ----
   (function(){
-    const box = document.getElementById('xhero-box');
-    const bg = document.getElementById('xhero-bg');
-    const dim = document.getElementById('xhero-dim');
-    const cap = document.getElementById('xhero-caption');
-    const intro = document.getElementById('xhero-intro');
-    const w1 = document.getElementById('xhero-w1');
-    const w2 = document.getElementById('xhero-w2');
-    if (!box) return;
+    const header = document.getElementById('pscr-header');
+    const layers = document.querySelectorAll('[data-parallax-layer]');
+    if (!header || !layers.length) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    let progress = 0;
-    let expanded = false;
-    let touchStartY = 0;
-    let isMobile = window.innerWidth < 768;
+    // GSAP layer yPercent targets at progress=1
+    const yPercentMap = {1: 70, 2: 55, 3: 40, 4: 10};
 
-    const render = () => {
-      const mw = 300 + progress * (isMobile ? 650 : 1250);
-      const mh = 400 + progress * (isMobile ? 200 : 400);
-      const tx = progress * (isMobile ? 55 : 50);
-      box.style.width = mw + 'px';
-      box.style.height = mh + 'px';
-      bg.style.opacity = String(1 - progress);
-      dim.style.opacity = String(0.5 - progress * 0.4);
-      cap.style.opacity = String(Math.max(0, 1 - progress * 2));
-      intro.style.opacity = String(Math.max(0, 1 - progress * 2));
-      w1.style.transform = 'translateX(-' + tx + 'vw)';
-      w2.style.transform = 'translateX(' + tx + 'vw)';
+    const onScroll = () => {
+      const rect = header.getBoundingClientRect();
+      const ch = header.offsetHeight;
+      const wh = window.innerHeight;
+      const scrolled = Math.max(0, -rect.top);
+      const maxScroll = Math.max(1, ch - wh);
+      const progress = Math.min(scrolled / maxScroll, 1);
+      layers.forEach(el => {
+        const layer = el.getAttribute('data-parallax-layer');
+        const yPercent = (yPercentMap[layer] || 0) * progress;
+        // preserve translate(-50%, -50%) base + add yPercent shift
+        if (layer === '4') {
+          el.style.transform = 'translate(-50%, calc(30% + ' + yPercent + '%))';
+        } else if (layer === '3') {
+          el.style.transform = 'translate(-50%, calc(-50% + ' + yPercent + '%))';
+        } else {
+          el.style.transform = 'translate(-50%, calc(-50% + ' + yPercent + '%))';
+        }
+      });
     };
-    window.addEventListener('resize', () => { isMobile = window.innerWidth < 768; render(); });
-
-    const onWheel = (e) => {
-      if (expanded && e.deltaY < 0 && window.scrollY <= 5) {
-        expanded = false;
-        e.preventDefault();
-      } else if (!expanded) {
-        e.preventDefault();
-        progress = Math.min(Math.max(progress + e.deltaY * 0.0009, 0), 1);
-        if (progress >= 1) expanded = true;
-        render();
-      }
-    };
-
-    const onTouchStart = (e) => { touchStartY = e.touches[0].clientY; };
-    const onTouchMove = (e) => {
-      if (!touchStartY) return;
-      const ty = e.touches[0].clientY;
-      const dy = touchStartY - ty;
-      if (expanded && dy < -20 && window.scrollY <= 5) {
-        expanded = false;
-        e.preventDefault();
-      } else if (!expanded) {
-        e.preventDefault();
-        const factor = dy < 0 ? 0.008 : 0.005;
-        progress = Math.min(Math.max(progress + dy * factor, 0), 1);
-        if (progress >= 1) expanded = true;
-        render();
-        touchStartY = ty;
-      }
-    };
-    const onTouchEnd = () => { touchStartY = 0; };
-    const onScroll = () => { if (!expanded) window.scrollTo(0, 0); };
-
-    window.addEventListener('wheel', onWheel, { passive: false });
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
-    window.addEventListener('touchend', onTouchEnd, { passive: true });
-    window.addEventListener('scroll', onScroll);
-
-    window.scrollTo(0, 0);
-    render();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   })();
 </script>
 
