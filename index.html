@@ -434,28 +434,6 @@
     heroVid.play().catch(() => {});
   }
 
-  // ---- DEST PARALLAX · 2 video cards slide-in on scroll ----
-  (function(){
-    const dest = document.querySelector('.dest');
-    const cards = document.querySelectorAll('.dest__list .dcard');
-    if (!dest || cards.length !== 2) return;
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const onScroll = () => {
-      const rect = dest.getBoundingClientRect();
-      const wh = window.innerHeight;
-      // 0 when dest top hits viewport bottom, 1 when dest bottom hits viewport top
-      const total = rect.height + wh;
-      const visible = wh - rect.top;
-      const progress = Math.max(0, Math.min(1, visible / total));
-      // Villas (left) — pomalejší vyjezd zespod
-      const tv = Math.max(0, (1 - progress * 1.6)) * 40;
-      const tc = Math.max(0, (1 - progress * 1.4)) * 60;
-      cards[0].style.transform = 'translateY(' + tv + 'vh)';
-      cards[1].style.transform = 'translateY(' + tc + 'vh)';
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  })();
 </script>
 
 </body>
