@@ -41,20 +41,25 @@
   .topbar__cta{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--paper);padding-bottom:6px;border-bottom:1px solid var(--brass);transition:opacity var(--t)}
   .topbar__cta:hover{opacity:.75}
 
-  /* HERO · asymmetric left-anchored editorial */
-  .hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;background:var(--ink)}
-  .hero__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 2s var(--ease) .3s}
-  .hero__media.is-ready{opacity:1}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,14,14,.7) 0%, rgba(14,14,14,.25) 35%, rgba(14,14,14,.55) 100%)}
-  .hero__inner{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:200px var(--pad-x) 64px}
-  .hero__copy{align-self:end;max-width:1080px}
-  .hero__pre{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);margin-bottom:42px;display:inline-flex;align-items:center;gap:14px}
-  .hero__pre::before{content:"";width:38px;height:1px;background:var(--brass)}
-  .hero__claim{font-family:var(--f-display);font-weight:300;font-size:clamp(56px,9.5vw,180px);line-height:.94;letter-spacing:-.025em;margin:0;color:var(--paper)}
-  .hero__claim em{font-style:normal;font-weight:300;color:inherit}
-  .hero__sub{margin-top:48px;font-size:17px;font-weight:300;line-height:1.7;color:var(--paper-soft);max-width:580px;letter-spacing:.005em}
-  .hero__bottom{align-self:end;display:flex;justify-content:space-between;align-items:flex-end;padding-top:60px;border-top:1px solid var(--paper-faint);font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-mute)}
-  .hero__bottom strong{font-weight:500;color:var(--paper-soft);display:block;margin-bottom:6px}
+  /* HERO · scroll-expansion */
+  .xhero{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
+  .xhero__bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:1;will-change:opacity}
+  .xhero__bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18)}
+  .xhero__box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:400px;max-width:95vw;max-height:85vh;border-radius:18px;overflow:hidden;z-index:3;box-shadow:0 0 60px rgba(0,0,0,.45);will-change:width,height}
+  .xhero__video{width:100%;height:100%;object-fit:cover;display:block}
+  .xhero__box-dim{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:1;pointer-events:none;will-change:opacity}
+  .xhero__caption{position:absolute;left:0;right:0;bottom:24px;z-index:2;text-align:center;color:var(--paper);pointer-events:none;will-change:opacity}
+  .xhero__date{font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-soft);margin:0 0 8px}
+  .xhero__prompt{font-family:var(--f-mono);font-size:10px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);margin:0}
+  .xhero__title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:16px;mix-blend-mode:difference;pointer-events:none;width:100%;padding:0 24px;text-align:center}
+  .xhero__word{font-family:var(--f-display);font-weight:300;font-size:clamp(48px,8.5vw,138px);line-height:1;letter-spacing:-.025em;color:var(--paper);margin:0;will-change:transform}
+  .xhero__intro{position:absolute;top:160px;left:50%;transform:translateX(-50%);z-index:4;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--paper-mute);display:inline-flex;align-items:center;gap:14px;pointer-events:none;will-change:opacity}
+  .xhero__intro::before{content:"";width:38px;height:1px;background:var(--brass)}
+  @media(max-width:880px){
+    .xhero__box{width:240px;height:340px;border-radius:14px}
+    .xhero__word{font-size:42px}
+    .xhero__intro{top:110px;font-size:10px;letter-spacing:.28em}
+  }
 
   /* GENERIC */
   section{position:relative}
@@ -201,9 +206,6 @@
     .topbar__right{gap:18px}
     .topbar__tab{display:none}
     .topbar__cta{font-size:10px}
-    .hero__inner{padding:140px 22px 40px}
-    .hero__sub{font-size:14px;margin-top:32px}
-    .hero__bottom{font-size:9px;padding-top:40px}
     .spread{padding:var(--sp) 0}
     .spread__grid{grid-template-columns:1fr;gap:56px}
     .spread__pre{position:static}
@@ -229,24 +231,26 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <video class="hero__media" autoplay muted loop playsinline preload="metadata" poster="bali-sunset-poster.jpg">
-    <source src="bali-sunset-m.mp4" media="(max-width: 900px)" type="video/mp4">
-    <source src="bali-sunset.mp4" type="video/mp4">
-  </video>
-  <div class="hero__inner">
-    <div class="hero__copy">
-      <div class="hero__pre">Bali · MMXXVII · two addresses</div>
-      <h1 class="hero__claim">Two places<br>to call yours.</h1>
-      <p class="hero__sub">Eight private villas on the cliffs of Bukit. Thirty-six homes in Canggu. Same studio, same builder, same operator. Two postcodes, two daily rhythms.</p>
-    </div>
-    <div class="hero__bottom">
-      <div><strong>I · Desa Kutuh</strong>Eight villas · 1 remaining</div>
-      <div style="text-align:right"><strong>II · Canggu</strong>Thirty-six homes · pre-sale</div>
+<!-- HERO · scroll-expansion -->
+<section class="xhero" id="xhero">
+  <div class="xhero__bg" id="xhero-bg" style="background-image:url('bali-rice-poster.jpg')"></div>
+  <div class="xhero__intro" id="xhero-intro">Bali · MMXXVII · two addresses</div>
+  <div class="xhero__box" id="xhero-box">
+    <video class="xhero__video" id="xhero-video" autoplay muted loop playsinline preload="auto" poster="bali-sunset-poster.jpg">
+      <source src="bali-sunset-m.mp4" media="(max-width: 900px)" type="video/mp4">
+      <source src="bali-sunset.mp4" type="video/mp4">
+    </video>
+    <div class="xhero__box-dim" id="xhero-dim"></div>
+    <div class="xhero__caption" id="xhero-caption">
+      <p class="xhero__date">Ananta · Bali</p>
+      <p class="xhero__prompt">Scroll to expand</p>
     </div>
   </div>
-</header>
+  <div class="xhero__title">
+    <h1 class="xhero__word" id="xhero-w1">Two places</h1>
+    <h1 class="xhero__word" id="xhero-w2">to call yours</h1>
+  </div>
+</section>
 
 <!-- SPREAD · The premise -->
 <section class="spread">
@@ -422,18 +426,81 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.fade').forEach(el => io.observe(el));
 
-  // Hero video reveal
-  const heroVid = document.querySelector('.hero__media');
-  if (heroVid) {
-    const reveal = () => heroVid.classList.add('is-ready');
-    heroVid.addEventListener('canplay', reveal, { once: true });
-    heroVid.addEventListener('loadeddata', reveal, { once: true });
-    setTimeout(reveal, 2400);
-    heroVid.play().catch(() => {});
-  }
-
   // Force-play videos for iOS Safari
   document.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
+
+  // ---- SCROLL-EXPANSION HERO ----
+  (function(){
+    const box = document.getElementById('xhero-box');
+    const bg = document.getElementById('xhero-bg');
+    const dim = document.getElementById('xhero-dim');
+    const cap = document.getElementById('xhero-caption');
+    const intro = document.getElementById('xhero-intro');
+    const w1 = document.getElementById('xhero-w1');
+    const w2 = document.getElementById('xhero-w2');
+    if (!box) return;
+
+    let progress = 0;
+    let expanded = false;
+    let touchStartY = 0;
+    let isMobile = window.innerWidth < 768;
+
+    const render = () => {
+      const mw = 300 + progress * (isMobile ? 650 : 1250);
+      const mh = 400 + progress * (isMobile ? 200 : 400);
+      const tx = progress * (isMobile ? 55 : 50);
+      box.style.width = mw + 'px';
+      box.style.height = mh + 'px';
+      bg.style.opacity = String(1 - progress);
+      dim.style.opacity = String(0.5 - progress * 0.4);
+      cap.style.opacity = String(Math.max(0, 1 - progress * 2));
+      intro.style.opacity = String(Math.max(0, 1 - progress * 2));
+      w1.style.transform = 'translateX(-' + tx + 'vw)';
+      w2.style.transform = 'translateX(' + tx + 'vw)';
+    };
+    window.addEventListener('resize', () => { isMobile = window.innerWidth < 768; render(); });
+
+    const onWheel = (e) => {
+      if (expanded && e.deltaY < 0 && window.scrollY <= 5) {
+        expanded = false;
+        e.preventDefault();
+      } else if (!expanded) {
+        e.preventDefault();
+        progress = Math.min(Math.max(progress + e.deltaY * 0.0009, 0), 1);
+        if (progress >= 1) expanded = true;
+        render();
+      }
+    };
+
+    const onTouchStart = (e) => { touchStartY = e.touches[0].clientY; };
+    const onTouchMove = (e) => {
+      if (!touchStartY) return;
+      const ty = e.touches[0].clientY;
+      const dy = touchStartY - ty;
+      if (expanded && dy < -20 && window.scrollY <= 5) {
+        expanded = false;
+        e.preventDefault();
+      } else if (!expanded) {
+        e.preventDefault();
+        const factor = dy < 0 ? 0.008 : 0.005;
+        progress = Math.min(Math.max(progress + dy * factor, 0), 1);
+        if (progress >= 1) expanded = true;
+        render();
+        touchStartY = ty;
+      }
+    };
+    const onTouchEnd = () => { touchStartY = 0; };
+    const onScroll = () => { if (!expanded) window.scrollTo(0, 0); };
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    window.addEventListener('scroll', onScroll);
+
+    window.scrollTo(0, 0);
+    render();
+  })();
 </script>
 
 </body>
